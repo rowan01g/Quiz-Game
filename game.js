@@ -64,9 +64,17 @@ startGame = () => { //assigning a function "arrow function"
 }
 
 getNewQuestion = () => {
-    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS ) {
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS ) { //"if there are no more available questions or the question counter has exceeded the maximum alloqwed questions, record the score "
         localStorage.setItem('mostRecentScore', score)
 
         return window.location.assign('/end.html')
     }
+
+    questionCounter++ //++ increments (adds one to) its operand and returns the value before or after the increment
+    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}` //backticks create a 'template literal' - this is a string that you can integrate a varibale into
+    progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%` //dispalys ratio of completed questions to max questions as a percentage progress bar
+    
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length) //Math.floor  returns the largest integer less than or equal to a given number
+
+
 }
