@@ -59,7 +59,7 @@ const MAX_QUESTIONS = 4
 startGame = () => { //assigning a function "arrow function"
     questionCounter = 0
     score = 0 
-    availableQuestions = [...question] //sqare brackets is an array and spread operator (...) gets all the values from questions
+    availableQuestions = [...questions] //sqare brackets is an array and spread operator (...) gets all the values from questions
     getNewQuestion()
 }
 
@@ -74,7 +74,7 @@ getNewQuestion = () => {
     progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}` //backticks create a 'template literal' - this is a string that you can integrate a varibale into
     progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%` //dispalys ratio of completed questions to max questions as a percentage progress bar
     
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length) //Math.floor  returns the largest integer less than or equal to a given number
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length) //Math.floor  returns the largest integer less than or equal to a given number, Math.random returns a random number between 0 and 1
 
 
 }
