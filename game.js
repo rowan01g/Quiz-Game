@@ -10,9 +10,9 @@ let score = 0
 let questionCounter = 0
 let availableQuestions = []
 
-let questions [
+let questions = [
     {
-        question: 'what is 2 + 2',
+        question: "what is 2 + 2?",
         choice1: "2",
         choice2: "4",
         choice3: "22",
@@ -20,7 +20,7 @@ let questions [
         answer: 2,
     },
     {
-        question: 'What is the capital of France?',
+        question: "What is the capital of France?",
         choice1: "Berlin",
         choice2: "Paris",
         choice3: "Madrid",
@@ -28,7 +28,7 @@ let questions [
         answer: 2,
     },
     {
-        question: 'Which planet is known as the Red Planet?',
+        question: "Which planet is known as the Red Planet?",
         choice1: "Earth",
         choice2: "Jupiter",
         choice3: "Mars",
@@ -36,7 +36,7 @@ let questions [
         answer: 3,
     },
     {
-        question: 'What is the chemical symbol for water?',
+        question: "What is the chemical symbol for water?",
         choice1: "H2O",
         choice2: "CO2",
         choice3: "NaCl",
@@ -44,7 +44,7 @@ let questions [
         answer: 1,
     },
     {
-        question: 'How many continents are there on Earth?',
+        question: "How many continents are there on Earth?",
         choice1: "5",
         choice2: "6",
         choice3: "7",
@@ -91,24 +91,24 @@ getNewQuestion = () => {
 }
 
 choices.forEach(choice => {
-    choice.addEventListener('click', e => {
-        if(!acceptingAnswers) return // "if not accepting answers" When a return statement is encountered within a function, the function will immediately stop executing
+    choice.addEventListener('click', e => { //adds a click event listener to each choice
+        if(!acceptingAnswers) return // "if accepeting answers = false" When a return statement is encountered within a function, the function will immediately stop executing
 
-        acceptingAnswers = false
-        const selectedChoice = e.target
-        const selectedAnswer = selectedChoice.dataset['number']
+        acceptingAnswers = false //sets accpetingAnswers to false to prevent multiple rapid clicks
+        const selectedChoice = e.target //captures chouice user clicked
+        const selectedAnswer = selectedChoice.dataset['number'] //retrieves the data-number the use chose
 
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct': 'incorrect'
+        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct': 'incorrect' //determines if selcted answer matches correct answer, if so correct, if not, incorrect
 
-        if(classToApply === 'correct') {
+        if(classToApply === 'correct') { //adds points if calsstoapply is correct 
             incrementScore(SCORE_POINTS)
         }
 
-        selectedChoice.parentElement.classList.add(classToApply)
+        selectedChoice.parentElement.classList.add(classToApply) // Adds the class ('correct' or 'incorrect') to the parent element of the selected choice. This is often used to visually indicate whether the choice was correct or incorrect (e.g., changing its background colour).
 
         setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply)
+            selectedChoice.parentElement.classList.remove(classToApply) // The applied class ('correct' or 'incorrect') is removed to reset the visual state of the choice.
             getNewQuestion()
-        }, 1000)
+        }, 1000) //Delays the execution of the code inside the function by 1000 milliseconds
     })
 })
