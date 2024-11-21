@@ -59,7 +59,7 @@ const MAX_QUESTIONS = 4
 startGame = () => { //assigning a function "arrow function"
     questionCounter = 0
     score = 0 
-    availableQuestions = [...questions] //sqare brackets is an array and spread operator (...) gets all the values from questions
+    availableQuestions = [...questions] //square brackets is an array and spread operator (...) gets all the values from questions
     getNewQuestion()
 }
 
@@ -67,14 +67,24 @@ getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS ) { //"if there are no more available questions or the question counter has exceeded the maximum alloqwed questions, record the score "
         localStorage.setItem('mostRecentScore', score)
 
-        return window.location.assign('/end.html')
+        return window.location.assign('/end.html') //directs user to "end" page upon game completion
     }
 
-    questionCounter++ //++ increments (adds one to) its operand and returns the value before or after the increment
+    questionCounter++ //++ increments (adds one to) its operand and returns the value before or after the increment, will increase question counter by 1 
     progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}` //backticks create a 'template literal' - this is a string that you can integrate a varibale into
     progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%` //dispalys ratio of completed questions to max questions as a percentage progress bar
     
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length) //Math.floor  returns the largest integer less than or equal to a given number, Math.random returns a random number between 0 and 1
+    // questionIndex an integer that represent what question we're on in the availableQuestions array
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length) //Math.floor returns the largest integer less than or equal to a given number, Math.random returns a random number between 0 and 1, .length returns the number of elements within an array
+    currentQuestion = availableQuestions[questionsIndex] //sets the current question - if questionIndex is 3, the current question will be the 3rd question form the available questions array 
+    question.innerText = currentQuestion.question
 
+    choices.forEach(choice => {
+        const number = choice.dataset['number']
+        choice.innerText = currentQuestion['choice' + number]
+
+    })
+
+    availableQuestions.splice(questionsIndex, 1)
 
 }
