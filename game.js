@@ -77,14 +77,21 @@ getNewQuestion = () => {
     // questionIndex an integer that represent what question we're on in the availableQuestions array
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length) //Math.floor returns the largest integer less than or equal to a given number, Math.random returns a random number between 0 and 1, .length returns the number of elements within an array
     currentQuestion = availableQuestions[questionsIndex] //sets the current question - if questionIndex is 3, the current question will be the 3rd question form the available questions array 
-    question.innerText = currentQuestion.question
+    question.innerText = currentQuestion.question // "innerText" retrieves the visible text content of an element
 
-    choices.forEach(choice => {
-        const number = choice.dataset['number']
-        choice.innerText = currentQuestion['choice' + number]
+    choices.forEach(choice => {         //Iterates over each element (a choice) in the choices collection, executing the provided callback function for each one.
+        const number = choice.dataset['number'] // Retrieves the value of the data-number attribute on the current choice element (look at html)
+        choice.innerText = currentQuestion['choice' + number] // eg. choice4: "8" - inner text will retrieve "8" as currentQuestion retrieves "choice4"
 
     })
 
-    availableQuestions.splice(questionsIndex, 1)
+    availableQuestions.splice(questionsIndex, 1) //removes item from the array available question - if questionsIndex = 5, will remove 6th item
+    acceptingAnswers = true 
 
 }
+
+choices.forEach(choice => {
+    choice.addEventListener('click', e => {
+        if(!acceptingAnswers) return // "if not accepting answers" When a return statement is encountered within a function, the function will immediately stop executing
+    })
+})
