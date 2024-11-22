@@ -112,3 +112,10 @@ choices.forEach(choice => {
         }, 1000) //Delays the execution of the code inside the function by 1000 milliseconds
     })
 })
+
+incrementScore = num => {
+    score +=num
+    scoreText.innertext = score
+}
+
+startGame()
