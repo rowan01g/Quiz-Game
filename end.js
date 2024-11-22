@@ -31,5 +31,5 @@ saveHighScore = e => {
 
     //The updated highScores array is converted to a JSON string using JSON.stringify and stored in localStorage under the key 'highScores'.
     localStorage.setItem('highScores', JSON.stringify(highScores)) //allows highscores to persist over browser sessions 
-    window.location.assign("/")
+    window.location.assign("/") // Redirects the user to the homepage (or root URL) after saving the high score.
 }
