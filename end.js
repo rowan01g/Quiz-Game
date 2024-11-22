@@ -21,7 +21,7 @@ saveHighScore = e => {
         name: username.value
     }
 
-    highScore.push(score) // new score object (above) is added to the highScore array
+    highScores.push(score) // new score object (above) is added to the highScore array
 
     highScores.sort((a, b) => { //orders scores from largest to smallest 
         return b.score - a.score
