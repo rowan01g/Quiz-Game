@@ -1,7 +1,7 @@
 const username = document.querySelctor("#username") //all these link calculated values from js to html page
 const saveScoreBtn = document.querySelctor("#saveScoreBtn")
 const finalScore = document.querySelctor("#finalScore")
-const mostRecentScore = document.querySelctor("#mostRecentScore")
+const mostRecentScore = loaclStorage.querySelctor("mostRecentScore")
 
 const highScore = JSON.parse(localStorage.getItem("highScores")) || [] //localStorage.getItem("highScores") retrieves highscores from local storage
 
