@@ -88,8 +88,8 @@ getNewQuestion = () => {
     question.innerText = currentQuestion.question // "innerText" retrieves the visible text content of an element - this sets the question area of html to the current question randomly selected from available questions 
 
     choices.forEach(choice => {         //Iterates over each element (a choice) in the choices collection, executing the provided callback function for each one.
-        const number = choice.dataset['number'] // Retrieves the value of the data-number attribute on the current choice element (look at html - in the html, data-number = "x")
-        choice.innerText = currentQuestion['choice' + number] // eg. choice4: "8" - inner text will retrieve "8" as currentQuestion retrieves "choice4"
+        const number = choice.dataset['number'] // Retrieves the value of the data-number attribute on the current choice-text element (look at html - in the html, data-number = "x") - selctive for choice-text as this contains data-number
+        choice.innerText = currentQuestion['choice' + number] // eg. choice4: "8" - inner text will retrieve "8" as currentQuestion retrieves "choice4" - "choice4" will correspond to an actual question
 
     })
 
