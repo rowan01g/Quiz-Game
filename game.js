@@ -10,7 +10,7 @@ let score = 0
 let questionCounter = 0
 let availableQuestions = []
 
-let questions = [
+let questions = [ // rememeber, question from here are passed into another array later: "availableQuestions"
     {
         question: "what is 2 + 2?",
         choice1: "2",
@@ -57,15 +57,23 @@ const SCORE_POINTS = 100
 const MAX_QUESTIONS = 4
 
 startGame = () => { //assigning a function "arrow function"
-    questionCounter = 0
-    score = 0 
-    availableQuestions = [...questions] //square brackets is an array and spread operator (...) gets all the values from questions
-    getNewQuestion()
+    questionCounter = 0 //question counter starts at 0
+    score = 0 // score starts at 0 
+    availableQuestions = [...questions] //square brackets is an array and spread operator (...) gets all the values from questions 
+    getNewQuestion() // a question is loaded at the start of the game
 }
+
+
+/*
+In the getNewQuestion function, first, js checks if there are still available question from the pool
+and that the number of questions answered does not exceed the maximum number of questions alloqwed
+Second, question counter is incremented to keep track of how many questions have been displayaed thus far - this is used to progress the progressBar
+Next, a random question is selcted from "availableQuestions" and the question text diplayed in the html question div 
+*/
 
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS ) { //"if there are no more available questions or the question counter has exceeded the maximum alloqwed questions, record the score "
-        localStorage.setItem('mostRecentScore', score)
+        localStorage.setItem('mostRecentScore', score) //save your score to local storage
 
         return window.location.assign('/end.html') //directs user to "end" page upon game completion
     }
@@ -77,10 +85,10 @@ getNewQuestion = () => {
     // questionIndex an integer that represent what question we're on in the availableQuestions array
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length) //Math.floor returns the largest integer less than or equal to a given number, Math.random returns a random number between 0 and 1, .length returns the number of elements within an array
     currentQuestion = availableQuestions[questionsIndex] //sets the current question - if questionIndex is 3, the current question will be the 3rd question form the available questions array 
-    question.innerText = currentQuestion.question // "innerText" retrieves the visible text content of an element
+    question.innerText = currentQuestion.question // "innerText" retrieves the visible text content of an element - this sets the question area of html to the current question randomly selected from available questions 
 
     choices.forEach(choice => {         //Iterates over each element (a choice) in the choices collection, executing the provided callback function for each one.
-        const number = choice.dataset['number'] // Retrieves the value of the data-number attribute on the current choice element (look at html)
+        const number = choice.dataset['number'] // Retrieves the value of the data-number attribute on the current choice element (look at html - in the html, data-number = "x")
         choice.innerText = currentQuestion['choice' + number] // eg. choice4: "8" - inner text will retrieve "8" as currentQuestion retrieves "choice4"
 
     })
@@ -98,7 +106,7 @@ choices.forEach(choice => {
         const selectedChoice = e.target //captures chouice user clicked
         const selectedAnswer = selectedChoice.dataset['number'] //retrieves the data-number the use chose
 
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct': 'incorrect' //determines if selcted answer matches correct answer, if so correct, if not, incorrect
+        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct': 'incorrect' //determines if selected answer matches correct answer, if so correct, if not, incorrect
 
         if(classToApply === 'correct') { //adds points if calsstoapply is correct 
             incrementScore(SCORE_POINTS)
