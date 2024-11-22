@@ -113,8 +113,9 @@ choices.forEach(choice => {
     })
 })
 
+// eg. incrementScore(100) would increase the score by 100 
 incrementScore = num => {
-    score +=num
+    score +=num // increments the value of a variable score by num.
     scoreText.innertext = score
 }
 
