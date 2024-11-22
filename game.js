@@ -1,8 +1,8 @@
-const question = document. querySelector('#question') //returns the first Element within the document that matches the specified CSS selector, or group of CSS selectors
+const question = document.querySelector('#question') //returns the first Element within the document that matches the specified CSS selector, or group of CSS selectors
 const choices = Array.from(document.querySelectorAll('.choice-text')) //querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors, then array from creates an array from them.
-const progressText = document. querySelector('#progressText')
-const scoreText = document. querySelector('#score')
-const progressBarFull = document. querySelector('#progressBarFull')
+const progressText = document.querySelector('#progressText')
+const scoreText = document.querySelector('#score')
+const progressBarFull = document.querySelector('#progressBarFull')
 
 let currentQuestion = {}
 let acceptingAnswers = true 
@@ -89,7 +89,7 @@ getNewQuestion = () => {
 
     choices.forEach(choice => {         //Iterates over each element (a choice) in the choices collection, executing the provided callback function for each one.
         const number = choice.dataset['number'] // Retrieves the value of the data-number attribute on the current choice-text element (look at html - in the html, data-number = "x") - selctive for choice-text as this contains data-number
-        choice.innerText = currentQuestion['choice' + number] // eg. choice4: "8" - inner text will retrieve "8" as currentQuestion retrieves "choice4" - "choice4" will correspond to an actual question
+        choice.innerText = currentQuestion['choice' + number] // eg. choice4: "Paris" - inner text will retrieve "Paris" as currentQuestion retrieves "choice4" - "choice4" will correspond to an actual question
 
     })
 
@@ -99,14 +99,14 @@ getNewQuestion = () => {
 }
 
 choices.forEach(choice => {
-    choice.addEventListener('click', e => { //adds a click event listener to each choice
+    choice.addEventListener('click', e => { //adds a click event listener to each choice, e is the event - in this case, the click which can then be modified and interacted with
         if(!acceptingAnswers) return // "if accepeting answers = false" When a return statement is encountered within a function, the function will immediately stop executing
 
-        acceptingAnswers = false //sets accpetingAnswers to false to prevent multiple rapid clicks
-        const selectedChoice = e.target //captures chouice user clicked
-        const selectedAnswer = selectedChoice.dataset['number'] //retrieves the data-number the use chose
+        acceptingAnswers = false //sets accpetingAnswers to false to prevent multiple rapid clicks - after 1 click, sets acceptin answer to false to prevent rapid clicks and answers
+        const selectedChoice = e.target //captures choice user clicked with target
+        const selectedAnswer = selectedChoice.dataset['number'] //retrieves the data-number the user chose
 
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct': 'incorrect' //determines if selected answer matches correct answer, if so correct, if not, incorrect
+        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct': 'incorrect' //determines if selected answer matches correct answer, if so, correct, if not, incorrect
 
         if(classToApply === 'correct') { //adds points if calsstoapply is correct 
             incrementScore(SCORE_POINTS)
@@ -124,7 +124,7 @@ choices.forEach(choice => {
 // eg. incrementScore(100) would increase the score by 100 
 incrementScore = num => {
     score +=num // increments the value of a variable score by num.
-    scoreText.innertext = score
+    scoreText.innerText = score
 }
 
 startGame()
