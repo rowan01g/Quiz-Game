@@ -1,9 +1,9 @@
-const username = document.querySelctor("#username") //all these link calculated values from js to html page
-const saveScoreBtn = document.querySelctor("#saveScoreBtn")
-const finalScore = document.querySelctor("#finalScore")
-const mostRecentScore = loaclStorage.querySelctor("mostRecentScore")
+const username = document.querySelector("#username") //all these link calculated values from js to html page
+const saveScoreBtn = document.querySelector("#saveScoreBtn")
+const finalScore = document.querySelector("#finalScore")
+const mostRecentScore = localStorage.getItem("mostRecentScore")
 
-const highScore = JSON.parse(localStorage.getItem("highScores")) || [] //localStorage.getItem("highScores") retrieves highscores from local storage
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [] //localStorage.getItem("highScores") retrieves highscores from local storage
 
 const MAX_HIGH_SCORES = 5 //sets a maximum of 5 highscores on the leaderboard
 
